@@ -138,4 +138,20 @@ public class MainBUS extends Thread{
             if(name.compareTo(to)==0) DSUser.get(name).GuiTinNhan(from, tinnhan);
         }
     }
+    public boolean UserChuaTonTai(String username)
+    {
+        boolean check=true;
+        Enumeration e = DSUser.keys();
+        String name = null;
+        while(e.hasMoreElements())
+        {
+            name=(String)e.nextElement();
+            if(name.equals(username))
+            {
+                check=false;
+                break;
+            }
+        }
+        return check;
+    }
 }

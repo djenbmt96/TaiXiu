@@ -58,30 +58,38 @@ public class ClientConnectBUS extends Thread{
                     case "dangnhap":
                     {
                         try {
-                            username=dc.tentaikhoan;
-                            String p=dc.matkhau;
-                            if(server.dal.getDangNhap(username, p))
+                            if(server.UserChuaTonTai(dc.tentaikhoan))
                             {
-                                server.form.areaServer.append("Người chơi "+username+" đã kết nối.\n");
-                                server.form.areaNguoiChoi.append(username+"\n");
-                                server.DSUser.put(username, this);
-                                thongtin=server.dal.nguoidung;
-                                DatCuoc dc1= new DatCuoc();
-                                dc1.Lenh="dangnhap";
-                                dc1.tentaikhoan=username;
-                                dc1.Tien=thongtin.tien;
-                                GuiDuLieu(dc1);
-                                
-                                //Update danh sách người chơi
-                                DatCuoc d=new DatCuoc();
-                                d.Lenh="dsnguoichoi";
-                                d.ten=server.LayDS();
-                                server.GuiChoTatCa(d);
+                                username=dc.tentaikhoan;
+                                String p=dc.matkhau;
+                                if(server.dal.getDangNhap(username, p))
+                                {
+                                    server.form.areaServer.append("Người chơi "+username+" đã kết nối.\n");
+                                    server.form.areaNguoiChoi.append(username+"\n");
+                                    server.DSUser.put(username, this);
+                                    thongtin=server.dal.nguoidung;
+                                    DatCuoc dc1= new DatCuoc();
+                                    dc1.Lenh="dangnhap";
+                                    dc1.tentaikhoan=username;
+                                    dc1.Tien=thongtin.tien;
+                                    GuiDuLieu(dc1);
+
+                                    //Update danh sách người chơi
+                                    DatCuoc d=new DatCuoc();
+                                    d.Lenh="dsnguoichoi";
+                                    d.ten=server.LayDS();
+                                    server.GuiChoTatCa(d);
+                                }
+                                else
+                                {
+                                    DatCuoc dc2=new DatCuoc();
+                                    dc2.Lenh="!dangnhap";
+                                    GuiDuLieu(dc2);
+                                }
                             }
-                            else
-                            {
+                            else{
                                 DatCuoc dc2=new DatCuoc();
-                                dc2.Lenh="!dangnhap";
+                                dc2.Lenh="userdatontai";
                                 GuiDuLieu(dc2);
                             }
                         }catch(Exception e){}
@@ -289,4 +297,5 @@ public class ClientConnectBUS extends Thread{
         dc.ten=from;
         GuiDuLieu(dc);
     }
+    
 }

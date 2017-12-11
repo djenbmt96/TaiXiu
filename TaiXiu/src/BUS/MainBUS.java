@@ -121,6 +121,11 @@ public class MainBUS extends Thread{
                 JOptionPane.showMessageDialog(form, "đăng nhập thất bại, vui lòng kiểm tra lại.","Lỗi đăng nhập",JOptionPane.WARNING_MESSAGE);
                 break;
             }
+            case "userdatontai":
+            {
+                JOptionPane.showMessageDialog(form, "Tài khoản này đang đăng nhập.","Lỗi đăng nhập",JOptionPane.WARNING_MESSAGE);
+                break;
+            }
             case "laythoigian":
             {
                 clock.setI(DCin.xucsac1);
@@ -157,6 +162,7 @@ public class MainBUS extends Thread{
                     form.labelTai.setForeground(Color.black);
                     if(form.labelTienTai.getText()!="0")
                     {
+                        form.labelThoiGian.setText("Bạn thua!");
                         DatCuoc d = new DatCuoc();
                         d.Lenh="thua";
                         d.Tien=Double.parseDouble(form.labelTienTai.getText());
@@ -165,6 +171,7 @@ public class MainBUS extends Thread{
                     }
                     else if(form.labelTienXiu.getText()!="0")
                     {
+                        form.labelThoiGian.setText("Bạn thắng!");
                         DatCuoc d = new DatCuoc();
                         d.Lenh="thang";
                         d.Tien=Double.parseDouble(form.labelTienXiu.getText());
@@ -181,6 +188,7 @@ public class MainBUS extends Thread{
                     form.labelTai.setForeground(Color.red);
                     if(form.labelTienXiu.getText()!="0")
                     {
+                        form.labelThoiGian.setText("Bạn thua!");
                         DatCuoc d = new DatCuoc();
                         d.Lenh="thua";
                         d.Tien=Double.parseDouble(form.labelTienXiu.getText());
@@ -189,6 +197,7 @@ public class MainBUS extends Thread{
                     }
                     else if(form.labelTienTai.getText()!="0")
                     {
+                        form.labelThoiGian.setText("Bạn thắng!");
                         DatCuoc d = new DatCuoc();
                         d.Lenh="thang";
                         d.Tien=Double.parseDouble(form.labelTienTai.getText());
